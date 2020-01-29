@@ -22,7 +22,13 @@ export default [
         path: '/events/create',
         exact: true,
         canActivate: [auth],
-        component: lazy(() => import('./containers/Events/EventsCreate')),
+        component: lazy(() => import('./containers/Events/EventCreate')),
+    },
+    {
+        path: '/events/:id',
+        exact: true,
+        canActivate: [auth],
+        component: lazy(() => import('./containers/Events/EventDetails')),
     },
     {
         path: '**',

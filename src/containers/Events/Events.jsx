@@ -21,8 +21,6 @@ export default class Events extends React.Component {
 
   loadEvents() {
     getEvents().then(data => {
-      console.log(data);
-
       this.setState({
         loading: false,
         events: data
@@ -65,14 +63,22 @@ export default class Events extends React.Component {
               <i className="fas fa-spin fa-spinner fa-2x mt-5"></i>
             </div>
           }
-          <div id="eventsList" className="col-12 row">
-            {events}
-          </div>
+          {!loading &&
+            <div id="eventsList" className="col-12 row no-gutters">
+              {events.length > 0 ?
+                events
+                :
+                <div className="col-12 text-center">
+                  <h4 className="mb-0 text-white">Empieza creando un evento</h4>
+                </div>
+              }
+            </div>
+          }
         </div>
-        <div id="addEventButtonContainer" class="animated slideInUp">
+        <div id="addEventButtonContainer" className="animated slideInUp">
           <Link to="/events/create">
             <span target="blank" id="addEventButton"
-              class="btn shadow-lg cursor mb-3 border-white btn-pill"><i class="fas fa-plus"></i>&nbsp;Crear evento</span>
+              className="btn shadow-lg cursor mb-3 border-white btn-pill"><i className="fas fa-plus"></i>&nbsp;Crear evento</span>
           </Link>
         </div>
       </>

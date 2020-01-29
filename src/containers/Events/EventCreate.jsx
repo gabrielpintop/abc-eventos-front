@@ -4,7 +4,7 @@ import { logOut } from '../../services/authentication';
 import { createEvent } from '../../services/events';
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import './EventsCreate.css';
+import './EventCreate.css';
 import es from 'date-fns/locale/es';
 registerLocale('es', es);
 
@@ -15,7 +15,6 @@ const EventsCreate = props => {
     const [endDate, setEndDate] = useState();
 
     const [form, setValues] = useState({
-        startDate: new Date(),
         name: '',
         category: 'Conferencia',
         online: '0',
@@ -38,11 +37,11 @@ const EventsCreate = props => {
         const { name, category, online, address, place } = form;
 
         createEvent({ name, category, startDate: startDate.getTime(), endDate: endDate.getTime(), online: Number(online), place, address }).then(data => {
-            alert('Evento creado con id ' + data);
-            props.history.push('/event');
+            window.alert('Evento creado exitosamente');
+            props.history.push(`/events/${data}`);
         }).catch(err => {
             setLoading(false);
-            alert(err);
+            window.alert(err);
         });
 
     };
@@ -53,7 +52,7 @@ const EventsCreate = props => {
 
     return (
         <div id="eventsContainer" className="row pt-5 d-flex align-items-center mb-5">
-            <div className="col-1 text-right"><Link to="/events"><i className="fas fa-arrow-left fa-lg text-white pointer"></i></Link></div>
+            <div className="col-1 text-right"><Link to="/events"><i className="fas fa-home fa-lg text-white pointer"></i></Link></div>
             <div className="col-10 text-white">
                 <div className="col-12 text-center">
                     <h2 className="mb-3">Crear evento</h2>
@@ -162,52 +161,13 @@ const EventsCreate = props => {
                             <i className="fas fa-2x fa-spin fa-spinner"></i>
 
                         ) : (
-                                <button className="btn-events-manage">&nbsp;Crear evento&nbsp;</button>
+                                <button className="btn btn-info border-white">&nbsp;Crear evento&nbsp;</button>
                             )}
                     </div>
                 </form>
 
             </div>
         </div>
-
-        // <section className="authentication">
-        //     <section className="authentication__container">
-        //         <div>
-        //             <h2>ABC eventos</h2>
-        //             <h4 className="mb-0">Inicia sesión</h4>
-        //         </div>
-        //         <form className="authentication__container--form" onSubmit={handleSubmit}>
-        //             <input
-        //                 name="email"
-        //                 className="authentication__container--form--input"
-        //                 type="email"
-        //                 placeholder="Correo"
-        //                 onChange={handleInput}
-        //                 disabled={loading}
-        //                 required
-        //             />
-        //             <input
-        //                 name="password"
-        //                 className="authentication__container--form--input"
-        //                 type="password"
-        //                 placeholder="Contraseña"
-        //                 onChange={handleInput}
-        //                 disabled={loading}
-        //                 required
-        //             />
-        //             {loading ? (
-        //                 <div className="text-center">
-        //                     <i className="fas fa-2x fa-spin fa-spinner"></i>
-        //                 </div>
-        //             ) : (
-        //                     <button className="btn-authentication">Iniciar sesión</button>
-        //                 )}
-        //         </form>
-        //         {!loading ? <p className="authentication__container--option">
-        //             ¿No tienes una cuenta?&nbsp;&nbsp;<Link to="/register">Regístrate</Link>
-        //         </p> : <div><br /></div>}
-        //     </section>
-        // </section>
     );
 };
 

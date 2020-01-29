@@ -9,6 +9,14 @@ const postRequest = (endpoint, body, resolve, reject, token, callback) => {
     handleRequestResponse(axios.post(api + endpoint, body, getHeaders(token)), resolve, reject, callback);
 };
 
+const putRequest = (endpoint, body, resolve, reject, token, callback) => {
+    handleRequestResponse(axios.put(api + endpoint, body, getHeaders(token)), resolve, reject, callback);
+};
+
+const deleteRequest = (endpoint, resolve, reject, token, callback) => {
+    handleRequestResponse(axios.delete(api + endpoint, getHeaders(token)), resolve, reject, callback);
+};
+
 const handleRequestResponse = (request, resolve, reject, callback) => {
     request.then(res => {
         if (callback) {
@@ -33,7 +41,7 @@ const handleError = (err, reject) => {
         if (status === 401) {
             localStorage.clear();
             alert(errors[0]);
-            // window.location.reload();
+            window.location.reload();
         }
 
         if (errors) {
@@ -56,5 +64,7 @@ const getHeaders = (token) => {
 
 module.exports = {
     getRequest,
-    postRequest
+    postRequest,
+    putRequest,
+    deleteRequest
 }
