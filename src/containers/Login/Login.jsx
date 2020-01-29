@@ -67,6 +67,7 @@ const Login = props => {
         {!loading ? <p className="authentication__container--option">
           ¿No tienes una cuenta?&nbsp;&nbsp;<Link to="/register">Regístrate</Link>
         </p> : <div><br /></div>}
+        <small>Desarollada por <a className="text-white" href="https://gabrielpinto.me" target="blank"><i>Gabriel Pinto</i></a></small>
       </section>
     </section>
   );
