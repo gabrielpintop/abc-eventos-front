@@ -1,0 +1,29 @@
+#addEventButtonContainer {
+    position: fixed;
+    z-index: 120000000;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+#addEventButton {
+    background-color: #2a6c88;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+#addEventButton:hover {
+    color: #fff;
+    opacity: 0.9;
+}
+
+#addEventButton:focus,
+#addEventButton.focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+#eventsList {
+    max-height: 68vh;
+    overflow: auto;
+}
